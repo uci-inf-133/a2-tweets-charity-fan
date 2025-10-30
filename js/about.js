@@ -42,7 +42,7 @@ function parseTweets(runkeeper_tweets) {
 	const numMisc = tweet_array.filter(function(tweet) {
 		return tweet.source === "miscellaneous";
 	});
-	console.log("total:", tweet_array.length);
+	// console.log("total:", tweet_array.length);
 	document.getElementsByClassName('completedEvents')[0].innerText = numCompleted.length;
 	document.getElementsByClassName('completedEvents')[1].innerText = numCompleted.length;
 	document.getElementsByClassName('liveEvents')[0].innerText = numLive.length;
