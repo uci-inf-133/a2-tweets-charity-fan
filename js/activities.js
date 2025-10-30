@@ -62,15 +62,15 @@ function parseTweets(runkeeper_tweets) {
 
 	//TODO: create the visualizations which group the three most-tweeted activities by the day of the week.
 	//Use those visualizations to answer the questions about which activities tended to be longest and when.
+
 	tweet_array.forEach(tweet => {
 		const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-		tweet.dayOfWeek = days[new Date(tweet.time).getDay()].trim();
+		tweet.dayOfWeek = days[new Date(tweet.time).getDay()];
 	});
 
 	// filtering array for only the tweets in the top 3 activities
 	const top3ActivityTypes = Object.keys(activityFrequencies).slice(0, 3);
 	const top3Activities = tweet_array.filter(tweet => top3ActivityTypes.includes(tweet.activityType) && tweet.dayOfWeek);
-
 	const distance_vis_spec = {
 	  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
 	  "description": "A graph of distances by day of the week for the three most tweeted-about activites.",
@@ -81,9 +81,9 @@ function parseTweets(runkeeper_tweets) {
 	  "encoding": {
 		"x": {
 			"field": "dayOfWeek",
-			"type": "nominal",
+			"type": "ordinal",
 			"title": "time (day)",
-			//"sort": ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+			"sort": "['Sun','Mon','Tue','Wed','Thu','Fri','Sat']"
 		},
 		"y": {
 			"field": "distance",
@@ -106,9 +106,9 @@ function parseTweets(runkeeper_tweets) {
 	  "encoding": {
 		"x": {
 			"field": "dayOfWeek",
-			"type": "nominal",
+			"type": "ordinal",
 			"title": "time (day)",
-			//"sort": ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+			"sort": "['Sun','Mon','Tue','Wed','Thu','Fri','Sat']"
 		},
 		"y": {
 			"field": "distance",
